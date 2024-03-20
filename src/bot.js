@@ -1,7 +1,17 @@
+import dotenv from 'dotenv';
 import TelegramBot from 'node-telegram-bot-api';
 
-// Ganti 'TOKEN_BOT_ANDA' dengan token bot Telegram Anda
-const token = '5145548744:AAHJ5yCsbhO4u_OkUlSV0UZGTNU_GnYGZeY';
+// Mengimpor dan mengkonfigurasi dotenv
+dotenv.config();
+
+// Mengambil token dari variabel lingkungan
+const token = process.env.TELEGRAM_BOT_TOKEN;
+
+// Pastikan token tersedia
+if (!token) {
+    console.error('Token bot Telegram tidak ditemukan. Pastikan Anda telah mengatur variabel lingkungan TELEGRAM_BOT_TOKEN.');
+    process.exit(1);
+}
 
 // Inisialisasi bot
 const bot = new TelegramBot(token, { polling: true });
